@@ -6,7 +6,7 @@ var appRouterController 	= require('./controller/AppRouter')(app);
 
 app.use(express.static('assets'));
 
-app.listen(8080, function(){
+app.listen(process.argv[2] || 80, function(){
 
 	dbConnect();	
 
