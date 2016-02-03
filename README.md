@@ -40,3 +40,47 @@ npm install
 node app.js [porta] # Padrão 80
 ```
 
+# Criando Malhas Logísticas
+
+* URL: http://localhost:80/api/map
+* Ação: POST
+* Content-Type: application/json
+* Parâmetros
+
+| Nome        | Tipo      |  Descrição              |
+|:----------- |:--------- |:------------------------|
+| name        | String    | Nome da Malha Logística |
+| paths       | Array     | Sequência de rotas      |
+
+Exemplo
+```json
+{
+  "name" : "SP",
+  "paths" : [{
+      "distancia" : 10,
+      "destino" : "B",
+      "origem" : "A"
+    }, {
+      "distancia" : 15,
+      "destino" : "D",
+      "origem" : "B"
+    }, {
+      "distancia" : 20,
+      "destino" : "C",
+      "origem" : "A"
+    },{
+      "distancia" : 30,
+      "destino" : "D",
+      "origem" : "C"
+    }, {
+      "distancia" : 50,
+      "destino" : "E",
+      "origem" : "B"
+    }, {
+      "distancia" : 30,
+      "destino" : "E",
+      "origem" : "D"
+    }]
+}
+```
+
