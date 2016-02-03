@@ -84,3 +84,10 @@ Exemplo
 }
 ```
 
+* Exemplo de retorno
+
+```json
+{
+	"message": "Mapa 'SP' criado com sucesso"
+}
+```
