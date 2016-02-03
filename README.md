@@ -52,7 +52,7 @@ node app.js [porta] # Padrão 80
 | name        | String    | Nome da Malha Logística |
 | paths       | Array     | Sequência de rotas      |
 
-Exemplo
+* Exemplo de Requisição
 ```json
 {
   "name" : "SP",
@@ -90,4 +90,64 @@ Exemplo
 {
 	"message": "Mapa 'SP' criado com sucesso"
 }
+```
+
+# Calculando Melhores Rotas
+
+* URL: http://localhost:80/api/calc
+* Ação: GET
+* Parâmetros
+
+| Nome        | Tipo      |  Descrição                              |
+|:----------- |:--------- |:----------------------------------------|
+| mapa        | String    | Nome da Malha Logística                 |
+| origem      | String    | Ponto inicial                           |
+| destino     | String    | Ponto final                             |
+| autonomia   | Numéro    | Autonomua do veículo em km/l            |
+| precoLitro  | Numéro    | Preço em R$ por litro de combustível    |
+
+* Exemplo de Requisição
+```
+http://localhost:80/api/calc?mapa=SP&origem=A&destino=D&autonomia=10&precoLitro=2.50
+```
+
+* Exemplo de retorno
+
+```json
+{
+  "rota": [
+    "A",
+    "B",
+    "D"
+  ],
+  "custo": 6.25,
+  "distanciaTotal": 25
+}
+```
+
+# Interface de Cálculo de Rotas
+
+Foi criada uma interface visual(HTML) para facilitar os testes de cálculo de rota, a mesma pode ser acessada na raiz do aplicativo
+
+```
+http://localhost:80/
+```
+
+# Ambiente de Testes
+
+Uma versão do aplicativo foi instalada em uma instância de servidor Amazon AWS e eestá disponível nos seguintes endereços 
+
+* Interface HTML
+```
+http://54.213.229.39/
+```
+
+* Criação de Malhas Logísticas
+```
+http://54.213.229.39/api/map
+```
+
+* Criação de Malhas Logísticas
+```
+http://54.213.229.39/api/calc
 ```
