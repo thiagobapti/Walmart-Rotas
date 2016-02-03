@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Walmart Rotas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+	<style type="text/css">
+		
+		body{
+			background-color: #0873bb;
+			color: #FFF;
+		}
+
+	</style>
+</head>
+<body>
+<div class="container" style="background-color: #096bac	">
+	
+
+	<h1 class="text-center">Walmart Rotas</h1>
+	<br>
+	<br>
+
+	<div class="form-horizontal">
+
+		<div class="form-group">
+			<label for="mapa" class="col-sm-2 control-label">Mapa:</label>
+			<div class="col-sm-4">
+				<input id="mapa" name="mapa" type="text" class="form-control input-sm" value="" required >
+			</div>
+			
+		</div>
+		
+		<div class="form-group">
+			<label for="origem" class="col-sm-2 control-label">Origem:</label>
+			<div class="col-sm-4">
+				<input id="origem" name="origem" type="text" class="form-control input-sm" value="" required >
+			</div>
+			
+		</div>
+
+		<div class="form-group">
+			<label for="destino" class="col-sm-2 control-label">Destino:</label>
+			<div class="col-sm-4">
+				<input id="destino" name="destino" type="text" class="form-control input-sm" value="" required >
+			</div>
+			
+		</div>
+
+		<div class="form-group">
+			<label for="autonomia" class="col-sm-2 control-label">Autonomia(km/l):</label>
+			<div class="col-sm-4">
+				<input id="autonomia" name="autonomia" type="text" class="form-control input-sm" value="" required >
+			</div>
+			
+		</div>
+
+		<div class="form-group">
+			<label for="precoLitro" class="col-sm-2 control-label">Valor por litro(R$):</label>
+			<div class="col-sm-4">
+				<input id="precoLitro" name="precoLitro" type="text" class="form-control input-sm" value="" required >
+			</div>
+			
+		</div>
+
+		<div class="form-group">
+			<label for="btnSend" class="col-sm-2 control-label"></label>
+			<div class="col-sm-4">
+				<input id="btnSend" name="btnSend" type="button" class="btn btn-warning pull-right" value="Buscar Rota" style="font-weight: bold" >
+			</div>
+			
+		</div>
+
+
+	</div>
+
+	<div id="detalhesRota">
+		
+		
+	</div>
+
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+	
+	$('#btnSend').click(function(){
+		
+		var mapa = $('#mapa').val();
+		var origem = $('#origem').val();
+		var destino = $('#destino').val();
+		var autonomia = $('#autonomia').val();
+		var precoLitro = $('#precoLitro').val().replace(',','.');
+		var url = '/api/calc?mapa=' +	mapa +
+			'&origem=' + origem +
+			'&destino=' + destino + 
+			'&autonomia=' + autonomia +
+			'&precoLitro=' + precoLitro;
+
+		$.ajax({
+		    url: url,
+		    type: 'GET',
+		    success: function(data){ 
+		    	var rota='',
+		    		aux='';
+
+		    	for(var i = 0 ; i < data.rota.length ; i++){
+					rota = rota + aux + data.rota[i];
+					aux = ', ';
+				}
+
+		    	var template = '<hr><h4 class="text-center">Detalhes da Rota</h4>'+
+		    		'<div class="form-horizontal"><div class="form-group"><label class="col-sm-2 control-label">Nº de paradas:</label>' +
+					'<div class="col-sm-4"><input type="text" class="form-control input-sm" value="' + data.rota.length + '" disabled ></div></div>'+
+					'<div class="form-group"><label class="col-sm-2 control-label">Total em KM:</label>' +
+					'<div class="col-sm-4"><input type="text" class="form-control input-sm" value="' + data.distanciaTotal + '" disabled ></div></div>'+
+					'<div class="form-group"><label class="col-sm-2 control-label">Custo Total:</label>' +
+					'<div class="col-sm-4"><input type="text" class="form-control input-sm" value="R$ ' + data.custo + '" disabled ></div></div>'+
+					'<div class="form-group"><label class="col-sm-2 control-label">Rota:</label>' +
+					'<div class="col-sm-4"><span style="vertical-align: -webkit-baseline-middle;">' + rota + '</span></div></div></div>';
+
+		    	$('#detalhesRota').html(template);
+		    },
+		    error: function(data) {
+		    	var template = '<div class="alert alert-danger text-center">' + data.responseJSON.message || 'Erro desconhecido' + '</div>';
+		    	$('#detalhesRota').html(template);
+		    }
+		});
+	});
+
+</script>
+
+</html>
