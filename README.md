@@ -22,19 +22,19 @@ Um exemplo de entrada seria, mapa SP, origem A, destino D, autonomia 10, valor d
 
 ## Instruções
 
-1 Download do repositório
+1. Download do repositório
 
 ```sh
 git clone https://github.com/thiagosyncmob/Walmart-Rotas.git
 ```
 
-2 Instalação das dependências("express": "~4.13.4", "mongoose": "~4.3.7", "node-dijkstra": "^2.2.1",)
+2. Instalação das dependências("express": "~4.13.4", "mongoose": "~4.3.7", "node-dijkstra": "^2.2.1",)
 
 ```sh
 npm install
 ```
 
-3 Iniciar o servidor
+3. Start no servidor
 
 ```sh
 node app.js [porta] # Padrão 80
@@ -103,8 +103,8 @@ node app.js [porta] # Padrão 80
 | mapa        | String    | Nome da Malha Logística                 |
 | origem      | String    | Ponto inicial                           |
 | destino     | String    | Ponto final                             |
-| autonomia   | Numéro    | Autonomua do veículo em km/l            |
-| precoLitro  | Numéro    | Preço em R$ por litro de combustível    |
+| autonomia   | Número    | Autonomua do veículo em km/l            |
+| precoLitro  | Número    | Preço em R$ por litro de combustível    |
 
 * Exemplo de Requisição
 ```
@@ -135,7 +135,7 @@ http://localhost:80/
 
 # Ambiente de Testes
 
-Uma versão do aplicativo foi instalada em uma instância de servidor Amazon AWS e eestá disponível nos seguintes endereços 
+Uma versão do aplicativo foi instalada em uma instância de servidor Amazon AWS e está disponível nos seguintes endereços 
 
 * Interface HTML
 ```
