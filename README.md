@@ -19,24 +19,24 @@ Um exemplo de entrada seria, mapa SP, origem A, destino D, autonomia 10, valor d
 
 ## Requisitos 
 
-* NodeJS 4+
-* MongoDB 2.6+
+* NodeJS 4.x
+* MongoDB 2.6.x
 
 ## Instruções
 
-1. Download do repositório
+1 - Download do repositório
 
 ```sh
 git clone https://github.com/thiagosyncmob/Walmart-Rotas.git
 ```
 
-2. Instalação das dependências("express": "~4.13.4", "mongoose": "~4.3.7", "node-dijkstra": "^2.2.1",)
+2 - Instalação das dependências("express": "~4.13.4", "mongoose": "~4.3.7", "node-dijkstra": "^2.2.1",)
 
 ```sh
 npm install
 ```
 
-3. Start no servidor
+3 - Start no servidor
 
 ```sh
 node app.js [porta] # Padrão 80
