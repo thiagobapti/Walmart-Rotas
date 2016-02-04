@@ -26,7 +26,7 @@
 		<div class="form-group">
 			<label for="mapa" class="col-sm-2 control-label">Mapa:</label>
 			<div class="col-sm-4">
-				<input id="mapa" name="mapa" type="text" class="form-control input-sm" value="" required >
+				<input id="mapa" name="mapa" type="text" class="form-control input-sm" placeHolder="SP" required >
 			</div>
 			
 		</div>
@@ -34,7 +34,7 @@
 		<div class="form-group">
 			<label for="origem" class="col-sm-2 control-label">Origem:</label>
 			<div class="col-sm-4">
-				<input id="origem" name="origem" type="text" class="form-control input-sm" value="" required >
+				<input id="origem" name="origem" type="text" class="form-control input-sm" placeHolder="A" required >
 			</div>
 			
 		</div>
@@ -42,7 +42,7 @@
 		<div class="form-group">
 			<label for="destino" class="col-sm-2 control-label">Destino:</label>
 			<div class="col-sm-4">
-				<input id="destino" name="destino" type="text" class="form-control input-sm" value="" required >
+				<input id="destino" name="destino" type="text" class="form-control input-sm" placeHolder="D" required >
 			</div>
 			
 		</div>
@@ -50,7 +50,7 @@
 		<div class="form-group">
 			<label for="autonomia" class="col-sm-2 control-label">Autonomia(km/l):</label>
 			<div class="col-sm-4">
-				<input id="autonomia" name="autonomia" type="text" class="form-control input-sm" value="" required >
+				<input id="autonomia" name="autonomia" type="text" class="form-control input-sm" placeHolder="10" required >
 			</div>
 			
 		</div>
@@ -58,7 +58,7 @@
 		<div class="form-group">
 			<label for="precoLitro" class="col-sm-2 control-label">Valor por litro(R$):</label>
 			<div class="col-sm-4">
-				<input id="precoLitro" name="precoLitro" type="text" class="form-control input-sm" value="" required >
+				<input id="precoLitro" name="precoLitro" type="text" class="form-control input-sm" placeHolder="2,50" required >
 			</div>
 			
 		</div>
@@ -109,15 +109,19 @@
 					aux = ', ';
 				}
 
-		    	var template = '<hr><h4 class="text-center">Detalhes da Rota</h4>'+
-		    		'<div class="form-horizontal"><div class="form-group"><label class="col-sm-2 control-label">Nº de paradas:</label>' +
-					'<div class="col-sm-4"><input type="text" class="form-control input-sm" value="' + data.rota.length + '" disabled ></div></div>'+
-					'<div class="form-group"><label class="col-sm-2 control-label">Total em KM:</label>' +
-					'<div class="col-sm-4"><input type="text" class="form-control input-sm" value="' + data.distanciaTotal + '" disabled ></div></div>'+
+		    	var template = '<hr><h4 class="text-center">Detalhes da Rota</h4><div class="form-horizontal">'+
+					'<div class="form-group"><label class="col-sm-2 control-label">Rota:</label>' +
+					'<div class="col-sm-4"><span style="vertical-align: -webkit-baseline-middle;">' + rota + '</span></div></div>' +
 					'<div class="form-group"><label class="col-sm-2 control-label">Custo Total:</label>' +
 					'<div class="col-sm-4"><input type="text" class="form-control input-sm" value="R$ ' + data.custo + '" disabled ></div></div>'+
-					'<div class="form-group"><label class="col-sm-2 control-label">Rota:</label>' +
-					'<div class="col-sm-4"><span style="vertical-align: -webkit-baseline-middle;">' + rota + '</span></div></div></div>';
+		    		'<div class="form-group"><label class="col-sm-2 control-label">NÂº de paradas:</label>' +
+					'<div class="col-sm-4"><input type="text" class="form-control input-sm" value="' + data.rota.length + '" disabled ></div></div>'+
+					'<div class="form-group"><label class="col-sm-2 control-label">Total em KM:</label>' +
+					'<div class="col-sm-4"><input type="text" class="form-control input-sm" value="' + data.distanciaTotal + '" disabled ></div></div></div>';
+
+				if(data.hasOwnProperty('message') && data.message ){
+					template += '<div class="alert alert-warning text-center">' + data.message + '</div>';
+				}
 
 		    	$('#detalhesRota').html(template);
 		    },

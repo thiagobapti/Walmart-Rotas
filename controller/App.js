@@ -76,7 +76,12 @@ module.exports = function(app){
 
                     paths = maps[0].get('paths');
 
-                    var auxObj = {}, origem, destino, distancia, novaRota, rotaAntiga;
+                    var auxObj = {},
+                        origem,
+                        destino,
+                        distancia,
+                        novaRota,
+                        rotaAntiga;
 
                     for(var i = 0 ; i < paths.length ; i++){
 
